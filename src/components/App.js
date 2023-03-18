@@ -11,6 +11,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { RenderLoadingContext } from "../contexts/RenderLoadingContext";
+import Login from "../components/Login";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -173,15 +174,7 @@ function App() {
               />
             </Routes>
             <Header />
-            <Main
-              onEditProfile={handleEditProfileClick}
-              onAddPlace={handleAddPlaceClick}
-              onEditAvatar={handleEditAvatarClick}
-              onCardClick={handleCardClick}
-              onCardLike={handleCardLike}
-              onCardDelete={handleDeleteClick}
-              cards={cards}
-            />
+            <Login />
             <Footer />
             <EditProfilePopup
               isOpen={isEditProfilePopupOpen}

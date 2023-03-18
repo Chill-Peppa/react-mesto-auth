@@ -1,0 +1,26 @@
+.login__form-input {
+  padding: 0;
+  border: none;
+  max-width: 358px;
+  width: 100%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  background-color: transparent;
+  padding-bottom: 9px;
+  border-bottom: 2px solid #ccc;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #ccc;
+}
+
+.login__form-input:focus {
+  outline: none;
+}
+
+.login__form-input:last-of-type {
+  margin-top: 28px;
+  margin-bottom: 216px;
+}
