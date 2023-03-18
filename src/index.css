@@ -10,11 +10,14 @@
 @import url("./blocks/header/__post/header__post.css");
 @import url("./blocks/header/__span/header__span.css");
 
-@import url("./blocks/login/login.css");
-@import url("./blocks/login/__up-zone/login__up-zone.css");
-@import url("./blocks/login/__header/login__header.css");
-@import url("./blocks/login/__form-input/login__form-input.css");
-@import url("./blocks/login/__button/login__button.css");
+@import url("./blocks/sign/sign.css");
+@import url("./blocks/sign/__up-zone/sign__up-zone.css");
+@import url("./blocks/sign/__header/sign__header.css");
+@import url("./blocks/sign/__form-input/sign__form-input.css");
+@import url("./blocks/sign/__button/sign__button.css");
+
+@import url("./blocks/sign/__register/sign__register.css");
+@import url("./blocks/sign/__enter/sign__enter.css");
 
 @import url("./blocks/profile/profile.css");
 @import url("./blocks/profile/__area/profile__area.css");

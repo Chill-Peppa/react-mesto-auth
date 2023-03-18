@@ -7,3 +7,4 @@
   onCardDelete={handleDeleteClick}
   cards={cards}
 />;
+<Login />;

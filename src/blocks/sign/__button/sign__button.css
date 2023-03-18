@@ -1,4 +1,4 @@
-.login__button {
+.sign__button {
   background-color: #fff;
   border: none;
   color: #000;
@@ -12,12 +12,15 @@
   width: 100%;
   padding: 0;
   text-align: center;
-  margin-top: 16px;
   border-radius: 2px;
   transition: opacity 0.4s ease-out;
   cursor: pointer;
 }
 
-.login__button:hover {
+.sign__button:hover {
   opacity: 0.85;
+}
+
+.sign__button:active {
+  opacity: 1;
 }

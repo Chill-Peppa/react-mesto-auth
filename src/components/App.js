@@ -12,6 +12,7 @@ import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { RenderLoadingContext } from "../contexts/RenderLoadingContext";
 import Login from "../components/Login";
+import Register from "../components/Register";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -174,7 +175,7 @@ function App() {
               />
             </Routes>
             <Header />
-            <Login />
+            <Register />
             <Footer />
             <EditProfilePopup
               isOpen={isEditProfilePopupOpen}

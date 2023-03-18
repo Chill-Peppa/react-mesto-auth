@@ -1,10 +1,10 @@
 import React from "react";
 
-function Login() {
+function Register() {
   return (
     <section className="sign">
       <div className="sign__up-zone">
-        <h2 className="sign__header">Вход</h2>
+        <h2 className="sign__header">Регистрация</h2>
         <form className="sign__form">
           <input
             className="sign__form-input"
@@ -24,9 +24,12 @@ function Login() {
           />
         </form>
       </div>
-      <button className="sign__button">Войти</button>
+      <button className="sign__button">Зарегистрироваться</button>
+      <p className="sign__register">
+        Уже зарегистрированы? <span className="sign__enter">Войти</span>
+      </p>
     </section>
   );
 }
 
-export default Login;
+export default Register;

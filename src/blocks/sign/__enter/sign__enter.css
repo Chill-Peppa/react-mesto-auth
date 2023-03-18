@@ -1,0 +1,12 @@
+.sign__enter {
+  cursor: pointer;
+  transition: opacity 0.35s ease-in-out;
+}
+
+.sign__enter:hover {
+  opacity: 0.6;
+}
+
+.sign__enter:active {
+  opacity: 1;
+}

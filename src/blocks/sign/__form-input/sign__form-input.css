@@ -1,4 +1,4 @@
-.login__form-input {
+.sign__form-input {
   padding: 0;
   border: none;
   max-width: 358px;
@@ -16,11 +16,11 @@
   color: #ccc;
 }
 
-.login__form-input:focus {
+.sign__form-input:focus {
   outline: none;
 }
 
-.login__form-input:last-of-type {
+.sign__form-input:last-of-type {
   margin-top: 28px;
   margin-bottom: 216px;
 }
