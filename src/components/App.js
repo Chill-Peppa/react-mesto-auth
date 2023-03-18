@@ -7,6 +7,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ConfirmDeletePopup from "./ConfirmDeletePopup";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { RenderLoadingContext } from "../contexts/RenderLoadingContext";
@@ -24,10 +25,11 @@ function App() {
     link: "",
   });
 
-  //новые хуки
   const [currentUser, setCurrentUser] = React.useState({ name: "", about: "" });
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
+  //хуки пр12
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getAllCards()])
@@ -158,6 +160,18 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <div className="App">
           <div className="page">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  loggedIn ? (
+                    <Navigate to="/main" replace />
+                  ) : (
+                    <Navigate to="/sign-in" replace />
+                  )
+                }
+              />
+            </Routes>
             <Header />
             <Main
               onEditProfile={handleEditProfileClick}

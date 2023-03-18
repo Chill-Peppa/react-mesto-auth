@@ -1,0 +1,4 @@
+.header__right-side {
+  display: flex;
+  column-gap: 24px;
+}
