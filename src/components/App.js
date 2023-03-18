@@ -13,6 +13,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { RenderLoadingContext } from "../contexts/RenderLoadingContext";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import InfoTooltip from "../components/InfoTooltip";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -175,20 +176,26 @@ function App() {
               />
             </Routes>
             <Header />
-            <Register />
+            <Main
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleDeleteClick}
+              cards={cards}
+            />
             <Footer />
             <EditProfilePopup
               isOpen={isEditProfilePopupOpen}
               onClose={closeAllPopups}
               onUpdateUser={handleUpdateUser}
             />
-
             <AddPlacePopup
               isOpen={isAddPlacePopupOpen}
               onClose={closeAllPopups}
               onAddPlace={handleAddPlaceSubmit}
             />
-
             <ImagePopup
               isOpen={isCardPopupOpen}
               onClose={closeAllPopups}
