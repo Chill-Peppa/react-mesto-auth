@@ -1,13 +1,13 @@
 import React from "react";
 import logo from "../images/logo.svg";
 
-function Header() {
+function Header(props) {
   return (
     <header className="header">
       <img className="header__logo" alt="Логотип сайта место" src={logo} />
       <div className="header__right-side">
-        <p className="header__post">почта юзера</p>
-        <span className="header__span">Войти</span>
+        <p className="header__post">{props.email}</p>
+        <span className="header__span">{props.text}</span>
       </div>
     </header>
   );

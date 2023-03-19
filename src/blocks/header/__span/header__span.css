@@ -9,4 +9,14 @@
   font-style: normal;
   color: #fff;
   cursor: pointer;
+  opacity: 1;
+  transition: 0.4s ease-in-out;
+}
+
+.header__span:hover {
+  opacity: 0.6;
+}
+
+.header__span:active {
+  opacity: 1;
 }

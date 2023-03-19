@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./Header";
+//import Header from "./Header";
 import Main from "./Main";
-import Footer from "./Footer";
+//import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
@@ -14,6 +14,7 @@ import { RenderLoadingContext } from "../contexts/RenderLoadingContext";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import InfoTooltip from "../components/InfoTooltip";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -174,18 +175,23 @@ function App() {
                   )
                 }
               />
+              <Route path="/sign-in" element={<Login />} />
+              <Route path="/sign-up" element={<Register />} />
+              <Route
+                path="/main"
+                element={
+                  <Main
+                    onEditProfile={handleEditProfileClick}
+                    onAddPlace={handleAddPlaceClick}
+                    onEditAvatar={handleEditAvatarClick}
+                    onCardClick={handleCardClick}
+                    onCardLike={handleCardLike}
+                    onCardDelete={handleDeleteClick}
+                    cards={cards}
+                  />
+                }
+              />
             </Routes>
-            <Header />
-            <Main
-              onEditProfile={handleEditProfileClick}
-              onAddPlace={handleAddPlaceClick}
-              onEditAvatar={handleEditAvatarClick}
-              onCardClick={handleCardClick}
-              onCardLike={handleCardLike}
-              onCardDelete={handleDeleteClick}
-              cards={cards}
-            />
-            <Footer />
             <EditProfilePopup
               isOpen={isEditProfilePopupOpen}
               onClose={closeAllPopups}
