@@ -19,6 +19,30 @@ class Auth {
       body: JSON.stringify({ email: `${email}`, password: `${password}` }),
     }).then(this._returnResponse);
   }
+
+  //метод для авторизации в системе
+  authorization(email, password) {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: `${email}`, password: `${password}` }),
+    }).then(this._returnResponse);
+    /*.then((data) => {
+        // сохраняем токен
+        localStorage.setItem("token", data.token);
+      })*/
+  }
+
+  //метод проверки валидности токена
+  checkToken() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }).then(this._returnResponse);
+  }
 }
 
 export const auth = new Auth({

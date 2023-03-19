@@ -15,6 +15,7 @@ function Login() {
               type="email"
               minLength="2"
               maxLength="70"
+              autoComplete="username"
               required
             />
             <input
@@ -23,6 +24,7 @@ function Login() {
               type="password"
               minLength="2"
               maxLength="40"
+              autoComplete="current-password"
               required
             />
           </form>

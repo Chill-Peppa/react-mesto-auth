@@ -38,6 +38,7 @@ function Register() {
               id="email"
               onChange={handleChangeEmail}
               placeholder="Email"
+              autoComplete="username"
               type="email"
               minLength="2"
               maxLength="70"
@@ -47,10 +48,10 @@ function Register() {
               className="sign__form-input"
               name="password"
               id="password"
-              autoComplete="on"
               value={password}
               onChange={handleChangePassword}
               placeholder="Пароль"
+              autoComplete="current-password"
               type="password"
               minLength="2"
               maxLength="40"
