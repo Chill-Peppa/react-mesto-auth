@@ -180,14 +180,19 @@ function App() {
               <Route
                 path="/main"
                 element={
-                  <Main
-                    onEditProfile={handleEditProfileClick}
-                    onAddPlace={handleAddPlaceClick}
-                    onEditAvatar={handleEditAvatarClick}
-                    onCardClick={handleCardClick}
-                    onCardLike={handleCardLike}
-                    onCardDelete={handleDeleteClick}
-                    cards={cards}
+                  <ProtectedRoute
+                    element={
+                      <Main
+                        onEditProfile={handleEditProfileClick}
+                        onAddPlace={handleAddPlaceClick}
+                        onEditAvatar={handleEditAvatarClick}
+                        onCardClick={handleCardClick}
+                        onCardLike={handleCardLike}
+                        onCardDelete={handleDeleteClick}
+                        cards={cards}
+                      />
+                    }
+                    loggedIn={loggedIn}
                   />
                 }
               />
