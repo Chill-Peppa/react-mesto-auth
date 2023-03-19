@@ -1,6 +1,8 @@
 .sign__enter {
   cursor: pointer;
   transition: opacity 0.35s ease-in-out;
+  text-decoration: none;
+  color: #fff;
 }
 
 .sign__enter:hover {
