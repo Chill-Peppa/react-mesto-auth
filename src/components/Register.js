@@ -30,7 +30,7 @@ function Register() {
       <section className="sign">
         <div className="sign__up-zone">
           <h2 className="sign__header">Регистрация</h2>
-          <form className="sign__form">
+          <form className="sign__form" onSubmit={handleSubmit}>
             <input
               className="sign__form-input"
               name="email"
@@ -56,17 +56,17 @@ function Register() {
               maxLength="40"
               required
             />
+            <button className="sign__button" type="submit">
+              Зарегистрироваться
+            </button>
+            <p className="sign__register">
+              Уже зарегистрированы?{" "}
+              <Link to="/sign-in" className="sign__enter">
+                Войти
+              </Link>
+            </p>
           </form>
         </div>
-        <button className="sign__button" onSubmit={handleSubmit}>
-          Зарегистрироваться
-        </button>
-        <p className="sign__register">
-          Уже зарегистрированы?{" "}
-          <Link to="/sign-in" className="sign__enter">
-            Войти
-          </Link>
-        </p>
       </section>
     </>
   );

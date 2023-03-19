@@ -12,16 +12,13 @@ class Auth {
 
   //метод для регистрации пользователя
   register(email, password) {
+    console.log(email, password); //www.nastya97@yandex.ru 11111
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: `${email}`, password: `${password}` }),
     }).then(this._returnResponse);
   }
-
-  //метод для авторизации на сервере
 }
 
 export const auth = new Auth({
