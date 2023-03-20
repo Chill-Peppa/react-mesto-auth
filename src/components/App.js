@@ -5,7 +5,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ConfirmDeletePopup from "./ConfirmDeletePopup";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
 import { auth } from "../utils/auth";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -33,6 +33,29 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [email, setEmail] = React.useState("");
+  const navigate = useNavigate();
+
+  // настало время проверить токен
+  React.useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const jwt = localStorage.getItem("token");
+
+      // здесь будем проверять токен
+      if (jwt) {
+        auth
+          .checkToken()
+          .then((res) => {
+            setEmail(res.data.email);
+            setLoggedIn(true);
+            navigate("/main", { replace: true });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+  }, []);
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getAllCards()])

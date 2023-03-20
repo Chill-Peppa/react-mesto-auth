@@ -44,7 +44,9 @@ class Auth {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    }).then(this._returnResponse);
+    })
+      .then(this._returnResponse)
+      .then((data) => data);
   }
 }
 
