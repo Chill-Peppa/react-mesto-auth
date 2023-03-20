@@ -24,9 +24,13 @@ function Register() {
     });
   };
 
+  const handleOnEnter = () => {
+    navigate("/sign-in", { replace: true });
+  };
+
   return (
     <>
-      <Header email="" text="Войти" />
+      <Header email="" text="Войти" onClick={handleOnEnter} />
       <section className="sign">
         <div className="sign__up-zone">
           <h2 className="sign__header">Регистрация</h2>

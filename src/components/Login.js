@@ -36,9 +36,14 @@ function Login(props) {
       })
       .catch((err) => console.log(err));
   };
+
+  const handleOnRegister = () => {
+    navigate("/sign-up", { replace: true });
+  };
+
   return (
     <>
-      <Header email="" text="Регистрация" />
+      <Header email="" text="Регистрация" onClick={handleOnRegister} />
       <section className="sign">
         <div className="sign__up-zone">
           <h2 className="sign__header">Вход</h2>

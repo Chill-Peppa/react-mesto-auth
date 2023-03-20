@@ -3,14 +3,23 @@ import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
+//хотела сделать через useHistory попробовать, но выдается ошибка
+//мол useHistory нет в react-router-dom :c
 
 function Main(props) {
   //подписываемся на контекст
   const currentUser = React.useContext(CurrentUserContext);
+  const navigate = useNavigate();
+
+  const signOut = () => {
+    localStorage.removeItem("token");
+    navigate("/sign-in", { replace: true });
+  };
 
   return (
     <>
-      <Header email={props.email} text="Выйти" />
+      <Header email={props.email} text="Выйти" onClick={signOut} />
       <main className="content">
         <section className="profile">
           <div className="profile__area">

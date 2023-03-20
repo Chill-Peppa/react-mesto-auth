@@ -7,7 +7,9 @@ function Header(props) {
       <img className="header__logo" alt="Логотип сайта место" src={logo} />
       <div className="header__right-side">
         <p className="header__post">{props.email}</p>
-        <span className="header__span">{props.text}</span>
+        <span className="header__span" onClick={props.onClick}>
+          {props.text}
+        </span>
       </div>
     </header>
   );
