@@ -31,7 +31,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({ name: "", about: "" });
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  //хуки пр12
+
   const [loggedIn, setLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
@@ -46,6 +46,10 @@ function App() {
         console.error(`Ошибка: ${err}`);
       });
   }, []);
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
 
   const handleCardClick = (card) => {
     setIsCardPopupOpen(true);
@@ -174,23 +178,23 @@ function App() {
                   )
                 }
               />
-              <Route path="/sign-in" element={<Login />} />
+              <Route
+                path="/sign-in"
+                element={<Login handleLogin={handleLogin} />}
+              />
               <Route path="/sign-up" element={<Register />} />
               <Route
                 path="/main"
                 element={
                   <ProtectedRoute
-                    element={
-                      <Main
-                        onEditProfile={handleEditProfileClick}
-                        onAddPlace={handleAddPlaceClick}
-                        onEditAvatar={handleEditAvatarClick}
-                        onCardClick={handleCardClick}
-                        onCardLike={handleCardLike}
-                        onCardDelete={handleDeleteClick}
-                        cards={cards}
-                      />
-                    }
+                    element={Main}
+                    onEditProfile={handleEditProfileClick}
+                    onAddPlace={handleAddPlaceClick}
+                    onEditAvatar={handleEditAvatarClick}
+                    onCardClick={handleCardClick}
+                    onCardLike={handleCardLike}
+                    onCardDelete={handleDeleteClick}
+                    cards={cards}
                     loggedIn={loggedIn}
                   />
                 }

@@ -26,11 +26,14 @@ class Auth {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: `${email}`, password: `${password}` }),
-    }).then(this._returnResponse);
-    /*.then((data) => {
-        // сохраняем токен
-        localStorage.setItem("token", data.token);
-      })*/
+    })
+      .then(this._returnResponse)
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          return data;
+        }
+      });
   }
 
   //метод проверки валидности токена
