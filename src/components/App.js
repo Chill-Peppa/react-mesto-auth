@@ -51,7 +51,7 @@ function App() {
             navigate("/main", { replace: true });
           })
           .catch((err) => {
-            console.log(err);
+            console.err(`${err}`);
           });
       }
     }
@@ -211,6 +211,7 @@ function App() {
                 element={
                   <ProtectedRoute
                     element={Main}
+                    email={email}
                     onEditProfile={handleEditProfileClick}
                     onAddPlace={handleAddPlaceClick}
                     onEditAvatar={handleEditAvatarClick}

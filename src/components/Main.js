@@ -10,7 +10,7 @@ function Main(props) {
 
   return (
     <>
-      <Header email="тут будет ящик юзера" text="Выйти" />
+      <Header email={props.email} text="Выйти" />
       <main className="content">
         <section className="profile">
           <div className="profile__area">
