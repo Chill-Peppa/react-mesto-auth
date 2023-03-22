@@ -1,9 +1,8 @@
 import React from "react";
 import Header from "./Header";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../utils/auth";
 
-function Register() {
+function Register(props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
@@ -18,10 +17,7 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    auth.register(email, password).then(() => {
-      navigate("/sign-in", { replace: true });
-    });
+    props.onRegister(email, password);
   };
 
   const handleOnEnter = () => {

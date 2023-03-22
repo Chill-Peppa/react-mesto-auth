@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../utils/auth";
 
 function Login(props) {
   const [email, setEmail] = React.useState("");
@@ -23,18 +22,7 @@ function Login(props) {
       return;
     }
 
-    auth
-      .authorization(email, password)
-      .then((data) => {
-        if (data.token) {
-          console.log(data.token);
-          setEmail("");
-          setPassword("");
-          props.handleLogin();
-          navigate("/main", { replace: true });
-        }
-      })
-      .catch((err) => console.log(err));
+    props.onLogin(email, password);
   };
 
   const handleOnRegister = () => {

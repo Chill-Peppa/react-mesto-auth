@@ -34,28 +34,10 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
+
+  const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
+  const [isSignSucces, setIsSignSucces] = React.useState(false);
   const navigate = useNavigate();
-
-  // настало время проверить токен
-  React.useEffect(() => {
-    if (localStorage.getItem("token")) {
-      const jwt = localStorage.getItem("token");
-
-      // здесь будем проверять токен
-      if (jwt) {
-        auth
-          .checkToken()
-          .then((res) => {
-            setEmail(res.data.email);
-            setLoggedIn(true);
-            navigate("/main", { replace: true });
-          })
-          .catch((err) => {
-            console.err(`${err}`);
-          });
-      }
-    }
-  }, []);
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getAllCards()])
@@ -69,6 +51,60 @@ function App() {
         console.error(`Ошибка: ${err}`);
       });
   }, []);
+
+  //проверяем токен
+  React.useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const jwt = localStorage.getItem("token");
+
+      if (jwt) {
+        auth
+          .checkToken()
+          .then((res) => {
+            setEmail(res.data.email);
+            setLoggedIn(true);
+            navigate("/main", { replace: true });
+          })
+          .catch((err) => {
+            console.err(`${err}`);
+          });
+      }
+    }
+  }, [navigate]); //если не добавить навигейт в зависимости, выдается ворнинг
+
+  const onRegister = (email, password) => {
+    auth
+      .register(email, password)
+      .then(() => {
+        setIsSignSucces(true);
+        setIsTooltipOpen(true);
+        navigate("/sign-in", { replace: true });
+      })
+      .catch((err) => {
+        setIsSignSucces(false);
+        setIsTooltipOpen(true);
+        console.log(err);
+      });
+  };
+
+  const onLogin = (email, password) => {
+    auth
+      .authorization(email, password)
+      .then((data) => {
+        if (data.token) {
+          console.log(data.token);
+          setEmail("");
+          handleLogin();
+          navigate("/main", { replace: true });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsSignSucces(false);
+        setIsTooltipOpen(true);
+        console.log(err);
+      });
+  };
 
   const handleLogin = () => {
     setLoggedIn(true);
@@ -103,6 +139,7 @@ function App() {
     setIsCardPopupOpen(false);
     setIsConfirmPopupOpen(false);
     setSelectedCard({ name: "", link: "" });
+    setIsTooltipOpen(false);
   };
 
   const handleCardLike = (card) => {
@@ -201,11 +238,11 @@ function App() {
                   )
                 }
               />
+              <Route path="/sign-in" element={<Login onLogin={onLogin} />} />
               <Route
-                path="/sign-in"
-                element={<Login handleLogin={handleLogin} />}
+                path="/sign-up"
+                element={<Register onRegister={onRegister} />}
               />
-              <Route path="/sign-up" element={<Register />} />
               <Route
                 path="/main"
                 element={
@@ -249,6 +286,11 @@ function App() {
               onClose={closeAllPopups}
               card={selectedCard}
               onDeleteCard={handleCardDelete}
+            />
+            <InfoTooltip
+              isOpen={isTooltipOpen}
+              onClose={closeAllPopups}
+              isSucces={isSignSucces}
             />
           </div>
         </div>
