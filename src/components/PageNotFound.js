@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function PageNotFound() {
   const navigate = useNavigate();
