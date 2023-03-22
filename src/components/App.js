@@ -14,6 +14,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import InfoTooltip from "../components/InfoTooltip";
 import ProtectedRoute from "../components/ProtectedRoute";
+import PageNotFound from "../components/PageNotFound";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -260,6 +261,7 @@ function App() {
                   />
                 }
               />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
             <EditProfilePopup
               isOpen={isEditProfilePopupOpen}
