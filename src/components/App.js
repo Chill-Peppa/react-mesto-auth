@@ -37,54 +37,51 @@ function App() {
   const [email, setEmail] = React.useState("");
 
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
-  const [isSignSucces, setIsSignSucces] = React.useState(false);
+  const [isSignSuccess, setIsSignSuccess] = React.useState(false);
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getAllCards()])
-      .then(([userArr, initialCards]) => {
-        setCurrentUser(userArr);
-        setCards(initialCards);
-        console.log(userArr);
-        console.log(initialCards);
-      })
-      .catch((err) => {
-        console.error(`Ошибка: ${err}`);
-      });
-  }, []);
+    loggedIn &&
+      Promise.all([api.getUserInfo(), api.getAllCards()])
+        .then(([userArr, initialCards]) => {
+          setCurrentUser(userArr);
+          setCards(initialCards);
+        })
+        .catch((err) => {
+          console.error(`Ошибка: ${err}`);
+        });
+  }, [loggedIn]);
 
   //проверяем токен
   React.useEffect(() => {
-    if (localStorage.getItem("token")) {
-      const jwt = localStorage.getItem("token");
+    const jwt = localStorage.getItem("token");
 
-      if (jwt) {
-        auth
-          .checkToken()
-          .then((res) => {
-            setEmail(res.data.email);
-            setLoggedIn(true);
-            navigate("/main", { replace: true });
-          })
-          .catch((err) => {
-            console.err(`${err}`);
-          });
-      }
+    if (jwt) {
+      auth
+        .checkToken()
+        .then((res) => {
+          setEmail(res.data.email);
+          setLoggedIn(true);
+          navigate("/main", { replace: true });
+        })
+        .catch((err) => {
+          console.error(`${err}`);
+        });
     }
-  }, [navigate]); //если не добавить навигейт в зависимости, выдается ворнинг
+  }, [navigate]);
 
   const onRegister = (email, password) => {
     auth
       .register(email, password)
       .then(() => {
-        setIsSignSucces(true);
+        setIsSignSuccess(true);
         setIsTooltipOpen(true);
         navigate("/sign-in", { replace: true });
       })
       .catch((err) => {
-        setIsSignSucces(false);
+        setIsSignSuccess(false);
         setIsTooltipOpen(true);
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -93,17 +90,14 @@ function App() {
       .authorization(email, password)
       .then((data) => {
         if (data.token) {
-          console.log(data.token);
           setEmail("");
           handleLogin();
           navigate("/main", { replace: true });
         }
       })
       .catch((err) => {
-        console.log(err);
-        setIsSignSucces(false);
+        setIsSignSuccess(false);
         setIsTooltipOpen(true);
-        console.log(err);
       });
   };
 
@@ -292,7 +286,11 @@ function App() {
             <InfoTooltip
               isOpen={isTooltipOpen}
               onClose={closeAllPopups}
-              isSucces={isSignSucces}
+              isSuccess={isSignSuccess}
+              successText="Вы успешно зарегистрировались!"
+              errorText="Что-то пошло не так! Попробуйте ещё раз."
+              altSuccess="Sign up done"
+              altError="Error! Please try again"
             />
           </div>
         </div>

@@ -17,13 +17,11 @@ function InfoTooltip(props) {
         ></button>
         <img
           className="popup__tooltip"
-          alt={props.isSucces ? "Sign up done" : "Error! Please try again."}
-          src={props.isSucces ? signup : error}
+          alt={props.isSuccess ? props.altSuccess : props.altError}
+          src={props.isSuccess ? signup : error}
         />
         <p className="popup__tooltip-text">
-          {props.isSucces
-            ? "Вы успешно зарегистрировались!"
-            : "Что-то пошло не так! Попробуйте ещё раз."}
+          {props.isSuccess ? props.successText : props.ErrorText}
         </p>
       </div>
     </div>
